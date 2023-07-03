@@ -1,22 +1,15 @@
-package com.jan1ooo.cloudparking.model;
+package com.jan1ooo.cloudparking.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Parking {
-
-    @Id
+public class ParkingDTO {
     private String id;
     private String license;
     private String state;
@@ -25,8 +18,7 @@ public class Parking {
     private LocalDateTime entryDate;
     private LocalDateTime exitDate;
     private Double bill;
-
-    public Parking(String id, String license, String state, String model, String color) {
+    public ParkingDTO(String id, String license, String state, String model, String color) {
         this.id = id;
         this.license = license;
         this.state = state;

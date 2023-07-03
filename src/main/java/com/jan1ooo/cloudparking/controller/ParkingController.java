@@ -1,26 +1,23 @@
 package com.jan1ooo.cloudparking.controller;
 
-import com.jan1ooo.cloudparking.model.Parking;
+import com.jan1ooo.cloudparking.dto.ParkingDTO;
+import com.jan1ooo.cloudparking.service.ParkingService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/parking")
 public class ParkingController {
 
-    @GetMapping
-    public List<Parking> findAll(){
-        Parking parking = new Parking();
-        parking.setId("1");
-        parking.setColor("PRETO");
-        parking.setModel("JETTA");
-        parking.setLicense("JI33-39M");
-        parking.setState("SP");
+    @Autowired
+    private ParkingService parkingService;
 
-        return Arrays.asList(parking);
+    @GetMapping
+    public List<ParkingDTO> findAll(){
+        return parkingService.findAll();
     }
 }
