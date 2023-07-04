@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component;
 public class ParkingMapper {
 
     public Parking toEntity(ParkingDTO parkingDTO){
-        if(parkingDTO.getId() == null){
+        if(parkingDTO.getId_parking() == null){
             return null;
         }
         Parking parking = new Parking();
-        if(parkingDTO.getId() != null){
-            parking.setId(parkingDTO.getId());
+        if(parkingDTO.getId_parking() != null){
+            parking.setId_parking(parkingDTO.getId_parking());
         }
         parking.setColor(parkingDTO.getColor());
         parking.setModel(parkingDTO.getModel());
@@ -26,11 +26,11 @@ public class ParkingMapper {
     }
 
     public ParkingDTO toDto(Parking parking){
-        if(parking.getId() == null){
+        if(parking.getId_parking() == null){
             return null;
         }
         ParkingDTO parkingDTO = new ParkingDTO();
-        parkingDTO.setId(parking.getId());
+        parkingDTO.setId_parking(parking.getId_parking());
         parkingDTO.setColor(parking.getColor());
         parkingDTO.setBill(parking.getBill());
         parkingDTO.setLicense(parking.getLicense());
