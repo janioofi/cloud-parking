@@ -4,6 +4,8 @@ import com.jan1ooo.cloudparking.dto.ParkingDTO;
 import com.jan1ooo.cloudparking.dto.mapper.ParkingMapper;
 import com.jan1ooo.cloudparking.model.Parking;
 import com.jan1ooo.cloudparking.repository.ParkingRepository;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,4 +28,9 @@ public class ParkingService {
     public ParkingDTO findById(Long id){
         return parkingMapper.toDto(parkingRepository.findById(id).get());
     }
+
+    public ParkingDTO create(@Valid @NotNull ParkingDTO parking){
+        return parkingMapper.toDto(parkingRepository.save(parkingMapper.toEntity(parking)));
+    }
+
 }

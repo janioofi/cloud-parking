@@ -7,37 +7,35 @@ import org.springframework.stereotype.Component;
 @Component
 public class ParkingMapper {
 
+    public ParkingDTO toDto(Parking parking){
+        if(parking == null){
+            return null;
+        }
+        return new ParkingDTO(parking.getId_parking(),
+                parking.getLicense(),
+                parking.getState(),
+                parking.getModel(),
+                parking.getColor(),
+                parking.getEntryDate(),
+                parking.getExitDate(),
+                parking.getBill());
+    }
+
     public Parking toEntity(ParkingDTO parkingDTO){
-        if(parkingDTO.getId_parking() == null){
+        if(parkingDTO == null){
             return null;
         }
         Parking parking = new Parking();
-        if(parkingDTO.getId_parking() != null){
-            parking.setId_parking(parkingDTO.getId_parking());
+        if(parkingDTO.id_parking() != null){
+            parking.setId_parking(parkingDTO.id_parking());
         }
-        parking.setColor(parkingDTO.getColor());
-        parking.setModel(parkingDTO.getModel());
-        parking.setLicense(parkingDTO.getLicense());
-        parking.setState(parkingDTO.getState());
-        parking.setBill(parkingDTO.getBill());
-        parking.setEntryDate(parkingDTO.getEntryDate());
-        parking.setExitDate(parkingDTO.getExitDate());
+        parking.setColor(parkingDTO.color());
+        parking.setModel(parkingDTO.model());
+        parking.setLicense(parkingDTO.license());
+        parking.setState(parkingDTO.state());
+        parking.setBill(parkingDTO.bill());
+        parking.setEntryDate(parkingDTO.entryDate());
+        parking.setExitDate(parkingDTO.exitDate());
         return parking;
-    }
-
-    public ParkingDTO toDto(Parking parking){
-        if(parking.getId_parking() == null){
-            return null;
-        }
-        ParkingDTO parkingDTO = new ParkingDTO();
-        parkingDTO.setId_parking(parking.getId_parking());
-        parkingDTO.setColor(parking.getColor());
-        parkingDTO.setBill(parking.getBill());
-        parkingDTO.setLicense(parking.getLicense());
-        parkingDTO.setModel(parking.getModel());
-        parkingDTO.setState(parking.getState());
-        parkingDTO.setEntryDate(parking.getEntryDate());
-        parkingDTO.setExitDate(parking.getExitDate());
-        return parkingDTO;
     }
 }
