@@ -2,6 +2,7 @@ package com.jan1ooo.cloudparking.service;
 
 import com.jan1ooo.cloudparking.dto.ParkingDTO;
 import com.jan1ooo.cloudparking.dto.mapper.ParkingMapper;
+import com.jan1ooo.cloudparking.exception.ParkingNotFoundException;
 import com.jan1ooo.cloudparking.model.Parking;
 import com.jan1ooo.cloudparking.repository.ParkingRepository;
 import jakarta.validation.Valid;
@@ -26,7 +27,7 @@ public class ParkingService {
     }
 
     public ParkingDTO findById(Long id){
-        return parkingMapper.toDto(parkingRepository.findById(id).get());
+        return parkingRepository.findById(id).map(parkingMapper::toDto).orElseThrow(() -> new ParkingNotFoundException(id));
     }
 
     public ParkingDTO create(@Valid @NotNull ParkingDTO parking){
