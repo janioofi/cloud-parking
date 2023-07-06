@@ -37,5 +37,14 @@ public class ParkingController {
         return ResponseEntity.status(201).body(parkingService.create(parking));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<ParkingDTO> update(@PathVariable Long id, @RequestBody ParkingDTO parking){
+        return ResponseEntity.status(204).body(parkingService.update(id, parking));
+    }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        parkingService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }
