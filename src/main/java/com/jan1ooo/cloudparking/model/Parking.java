@@ -36,10 +36,10 @@ public class Parking {
     @NotEmpty
     private String color;
 
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalDateTime entryDate;
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalDateTime exitDate;
     private Double bill;

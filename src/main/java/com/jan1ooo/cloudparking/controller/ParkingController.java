@@ -1,13 +1,16 @@
 package com.jan1ooo.cloudparking.controller;
 
 import com.jan1ooo.cloudparking.dto.ParkingDTO;
+import com.jan1ooo.cloudparking.exception.ParkingNotFoundException;
 import com.jan1ooo.cloudparking.service.ParkingService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.persistence.PersistenceException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 @Tag(name = "Parkings", description = "API Parking")
@@ -17,6 +20,7 @@ public class ParkingController {
 
     @Autowired
     private final ParkingService parkingService;
+
 
     public ParkingController(ParkingService parkingService) {
         this.parkingService = parkingService;
@@ -45,6 +49,13 @@ public class ParkingController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
         parkingService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/exit/{id}")
+    public ResponseEntity<Void> exit(@PathVariable Long id,@RequestBody ParkingDTO parkingDTO) {
+        parkingService.exitDate(id, parkingDTO);
+        parkingService.bill(id);
         return ResponseEntity.noContent().build();
     }
 }
