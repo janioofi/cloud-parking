@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.Temporal;
+import java.time.temporal.TemporalField;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.function.LongFunction;
@@ -42,6 +43,9 @@ public class ParkingService {
     }
 
     public ParkingDTO create(@Valid @NotNull ParkingDTO parking) {
+        Parking parkingEntity = parkingMapper.toEntity(parking);
+        parkingEntity.setEntryDate(LocalDateTime.now());
+        parking = parkingMapper.toDto(parkingEntity);
         return parkingMapper.toDto(parkingRepository.save(parkingMapper.toEntity(parking)));
     }
 
@@ -66,15 +70,15 @@ public class ParkingService {
         Long hours = period.toHours();
         Double price = 0.0;
         if (hours >= 0 && hours <= 3) {
-            price += 22.5;
+            price += 14.5;
         } else if (hours > 3 && hours <= 7) {
-            price += 19.0;
+            price += 13.5;
         } else if (hours > 7 && hours <= 13) {
-            price += 17.5;
+            price += 12.8;
         } else if (hours > 13 && hours <= 17) {
-            price += 16.4;
+            price += 11.9;
         } else {
-            price += 15.5;
+            price += 11;
         }
         Double tot = price * hours;
         parkingRepository.findById(id)

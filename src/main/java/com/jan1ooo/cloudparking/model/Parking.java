@@ -38,7 +38,8 @@ public class Parking {
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
-    private LocalDateTime entryDate;
+    private LocalDateTime entryDate = LocalDateTime.now();
+
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalDateTime exitDate;

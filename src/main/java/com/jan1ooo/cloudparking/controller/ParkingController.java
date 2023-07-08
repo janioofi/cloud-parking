@@ -21,7 +21,6 @@ public class ParkingController {
     @Autowired
     private final ParkingService parkingService;
 
-
     public ParkingController(ParkingService parkingService) {
         this.parkingService = parkingService;
     }
