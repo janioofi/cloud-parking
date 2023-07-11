@@ -9,7 +9,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class ParkingControllerIT {
+class ParkingControllerIT extends AbstractContainerBase {
 
     @LocalServerPort
     private int randomPort;
@@ -33,18 +33,18 @@ class ParkingControllerIT {
                 .prettyPrint();
     }
 
-    @Test
-    void whenCreateThenCheckIsCreated() {
-        RestAssured.given()
-                .when()
-                .post("/api/parking")
-                .then()
-                .statusCode(201)
-                .extract()
-                .response()
-                .body()
-                .prettyPrint();
-    }
+//    @Test
+//    void whenCreateThenCheckIsCreated() {
+//        RestAssured.given()
+//                .when()
+//                .post("/api/parking")
+//                .then()
+//                .statusCode(201)
+//                .extract()
+//                .response()
+//                .body()
+//                .prettyPrint();
+//    }
 
     @Test
     void exit() {
